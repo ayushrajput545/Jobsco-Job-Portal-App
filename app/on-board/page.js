@@ -1,9 +1,8 @@
+import { OnBoard } from "@/components/on-board";
 
-export default function OnBoarded(){
+export default function OnBoardedPage(){
 
     return(
-        <div>
-            This is on OnBoarded route
-        </div>
+        <OnBoard/>
     )
 }
