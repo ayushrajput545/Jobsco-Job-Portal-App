@@ -39,3 +39,25 @@ export async function createProfileAction(formData , pathToRevalidate){
         }
     }
 }
+
+// fetch profile on OnBoard page
+export async function fetchProfileAction(id){
+    await dbConnect();
+    try{
+        const response = await User.findOne({userId:id})
+        return {
+            success:true,
+            message:"Data fetched successfully",
+            data:JSON.parse(JSON.stringify(response))
+        }
+
+    }
+    catch(err){
+        console.log(err)
+        return {
+            success:false,
+            message:"Internal Server error! Please try again"
+        }
+    }
+
+}

@@ -9,7 +9,7 @@ import { UserButton } from "@clerk/nextjs"
 
  
 
-export default function Header({user}){
+export default function Header({user , profileInfo}){
 
     const menuItems =[
         {
@@ -32,12 +32,12 @@ export default function Header({user}){
         {
             label:'Jobs',
             path:'/jobs',
-            show:user ? true : false
+            show:user  ? true : false
         },
         {
             label:'Activity',
             path:'/activity',
-            show:user?true:false // we also simpley write user
+            show:user && profileInfo?.data?.accountType==='candidate'?true:false // we also simpley write user
         },
         {
             label: 'Membership',
