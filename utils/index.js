@@ -89,3 +89,54 @@ export const candidateOnBoardFormControls=[
         componentType:'input'
     },
 ]
+
+export const postNewJobFormControls=[
+    {
+        label:"Company Name",
+        name:'companyName',
+        placeholder:'Company name',
+        componentType:"input"
+    },
+
+    {
+        label:"Title",
+        name:'jobTitle',
+        placeholder:'Enter job title...',
+        componentType:"input"
+    },
+
+    {
+        label:"Type",
+        name:'jobType',
+        placeholder:'Enter job type',
+        componentType:"input"
+    },
+    {
+        label:"Location",
+        name:'jobLocation',
+        placeholder:'Enter Job Location',
+        componentType:"input"
+    },
+
+    {
+        label:"Experience",
+        name:'jobExperience',
+        placeholder:'Enter job experience',
+        componentType:"input"
+    },
+
+    {
+        label:"Description",
+        name:'jobDescription',
+        placeholder:'Enter job description',
+        componentType:"input"
+    },
+
+    {
+        label:"Skills",
+        name:'skills',
+        placeholder:'Enter skills required',
+        componentType:"input"
+    }
+
+]

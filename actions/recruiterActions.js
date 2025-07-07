@@ -44,7 +44,7 @@ export async function createProfileAction(formData , pathToRevalidate){
 export async function fetchProfileAction(id){
     await dbConnect();
     try{
-        const response = await User.findOne({userId:id})
+        const response = await User.findOne({userId:id}).populate('recruiterProfileInfo').exec();
         return {
             success:true,
             message:"Data fetched successfully",
