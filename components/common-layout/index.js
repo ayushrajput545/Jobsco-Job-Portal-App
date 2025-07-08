@@ -5,8 +5,7 @@ import { fetchProfileAction } from "@/actions/recruiterActions";
 export default async function CommonLayout({children}){ // this children came from layout.js
 
     const user = await currentUser()
-    const profileInfo = await fetchProfileAction();
-
+    const profileInfo = await fetchProfileAction(user?.id);
 
     return(
         <div>

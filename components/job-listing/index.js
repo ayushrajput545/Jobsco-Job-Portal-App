@@ -1,3 +1,4 @@
+import { CandidateJobCard } from "../candidate-job-card";
 import { PostNewJob } from "../post-new-job";
 import { RecruiterJobsCard } from "../recruiter-job-card";
 
@@ -36,7 +37,9 @@ export function JobListing({user , profileInfo,jobsList}){
                                         jobsList?.data && jobsList?.data?.length>0 
                                         ?
                                         jobsList?.data.map((jobItem,i)=>(
-                                            profileInfo?.data?.accountType==="candidate" ? <p key={i}>Candidate</p>
+                                            profileInfo?.data?.accountType==="candidate" 
+                                            ? 
+                                            <CandidateJobCard key={i} jobItem={jobItem}/>
                                             :
                                            <RecruiterJobsCard key={i} jobItem={jobItem}/>
                                         ))

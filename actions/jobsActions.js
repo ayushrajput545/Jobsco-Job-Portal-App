@@ -27,7 +27,7 @@ export async function postNewJobAction(formData , pathToRevalidate){
     }
 }
 
-//fetch jobs for recruter
+//fetch jobs for recruter from recruiterid that is passed
 export async function fetchJobsForRecruiterAction(id){
     await dbConnect();
     try{
@@ -48,5 +48,24 @@ export async function fetchJobsForRecruiterAction(id){
     }
 }
 
-//fetch all jobs for candidate that is created by all the rectuiter
+//fetch all jobs for candidate that is created by all the rectuiter from mongoDB 
+export async function fetchJobsForCandidateAction(){
+    await dbConnect();
+    try{
+        const allJobs = await Jobs.find({});
+        return{
+            success:true,
+            message:"Jobs fetched successfully",
+            data:JSON.parse(JSON.stringify(allJobs))
+        }
+    }
+    catch(err){
+        console.log(err)
+        return {
+            success:false,
+            message:"Internal Server Error! Please try again later"
+        }
+    }
+}
+
 

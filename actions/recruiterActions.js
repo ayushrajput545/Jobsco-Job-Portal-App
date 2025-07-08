@@ -40,11 +40,11 @@ export async function createProfileAction(formData , pathToRevalidate){
     }
 }
 
-// fetch profile on OnBoard page
+// fetch profile on OnBoard page for both caniddate and recruiter
 export async function fetchProfileAction(id){
     await dbConnect();
     try{
-        const response = await User.findOne({userId:id}).populate('recruiterProfileInfo').exec();
+        const response = await User.findOne({userId:id}).populate('recruiterProfileInfo').populate('candidateProfileInfo').exec();
         return {
             success:true,
             message:"Data fetched successfully",

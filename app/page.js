@@ -6,7 +6,7 @@ export default async function Home() {
   const user = await currentUser() // user is authenticated
 
   const profileInfo = await fetchProfileAction(user?.id) // means user is canditate or recuirter
-
+  console.log(profileInfo)
   if(user && !profileInfo?.data?._id) redirect('/on-board')
 
   return (
