@@ -1,4 +1,4 @@
-import { fetchJobsForCandidateAction, fetchJobsForRecruiterAction } from "@/actions/jobsActions";
+import { fetchJobApplicationForCandidate, fetchJobApplicationForRecriter, fetchJobsForCandidateAction, fetchJobsForRecruiterAction } from "@/actions/jobsActions";
 import { fetchProfileAction } from "@/actions/recruiterActions";
 import { JobListing } from "@/components/job-listing";
 import { currentUser } from "@clerk/nextjs/server";
@@ -13,13 +13,19 @@ export default async function JobsPage(){
     await fetchJobsForCandidateAction()
     : 
     await fetchJobsForRecruiterAction(user?.id)
-    console.log(jobsList)
+   
+    const getJobApplicationsList = profileInfo?.data?.accountType==="candidate"
+    ?
+    await fetchJobApplicationForCandidate(user?.id)
+    :
+    await fetchJobApplicationForRecriter(user?.id)
 
     return (
        <JobListing 
             user = {JSON.parse(JSON.stringify(user))} 
             profileInfo={profileInfo}
             jobsList={jobsList}
+            jobApplications={getJobApplicationsList}
        />
     )
 }

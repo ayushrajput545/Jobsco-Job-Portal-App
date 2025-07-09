@@ -1,5 +1,6 @@
 "use server"
 import dbConnect from "@/config/database";
+import Application from "@/models/Application";
 import Jobs from "@/models/Jobs";
 import { revalidatePath } from "next/cache";
 
@@ -67,5 +68,74 @@ export async function fetchJobsForCandidateAction(){
         }
     }
 }
+
+// create job application
+export async function createJobApplicationAction(data, pathToRevalidate){
+    await dbConnect()
+    revalidatePath(pathToRevalidate)
+    try{
+        const newJobApplication = await Application.create(data)
+
+        return{
+            success:true,
+            message:"Applied Successfully",
+            data:JSON.parse(JSON.stringify(newJobApplication))
+        }
+
+    }
+    catch(err){
+        console.log(err)
+        return {
+            success:false,
+            message:"Internal Server Error! Please try again later"
+        }
+    }
+
+}
+
+// fetch job Application for caniddate
+export async function fetchJobApplicationForCandidate(candidateID,pathToRevalidate){
+    await dbConnect();
+    revalidatePath(pathToRevalidate)
+    try{
+        const allApplications = await Application.findById({candidateUserID:candidateID})
+        return {
+            success:true,
+            message:"Applications fetched successfully",
+            data:JSON.parse(JSON.stringify(allApplications))
+        }
+    }
+    catch(err){
+        console.log(err)
+        return {
+            success:false,
+            message:"Internal Server Error! Please try again later"
+        }
+    }
+}
+
+// fetch job application for recriter
+export async function fetchJobApplicationForRecriter(recruiterID,pathToRevalidate){
+    await dbConnect();
+    revalidatePath(pathToRevalidate)
+    try{
+        const allApplications = await Application.findById({recruiterUserID:recruiterID})
+        return {
+            success:true,
+            message:"Applications fetched successfully",
+            data:JSON.parse(JSON.stringify(allApplications))
+        }
+    }
+    catch(err){
+        console.log(err)
+        return {
+            success:false,
+            message:"Internal Server Error! Please try again later"
+        }
+    }
+}
+
+
+// update job application
 
 

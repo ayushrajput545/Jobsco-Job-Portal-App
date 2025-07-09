@@ -2,7 +2,7 @@ import { CandidateJobCard } from "../candidate-job-card";
 import { PostNewJob } from "../post-new-job";
 import { RecruiterJobsCard } from "../recruiter-job-card";
 
-export function JobListing({user , profileInfo,jobsList}){
+export function JobListing({user , profileInfo,jobsList , jobApplications}){
 
     return (
         <div>
