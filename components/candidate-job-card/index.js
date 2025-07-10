@@ -5,10 +5,27 @@ import { CommonCard } from "../common-card"
 import { Button } from "../ui/button"
 import { Drawer, DrawerContent, DrawerDescription, DrawerHeader, DrawerTitle } from "../ui/drawer"
 import { useState } from "react"
+import { createJobApplicationAction } from "@/actions/jobsActions"
 
-export function CandidateJobCard({jobItem}){
+export function CandidateJobCard({jobItem ,profileInfo,jobApplications}){
 
     const[showJobDetailDrawer , setShowJobDetailDrawer] = useState(false);
+
+    async function handleJobApply(){
+
+        const data={
+            recruiterUserID:jobItem?.recruiterId,
+            name:profileInfo?.data?.candidateProfileInfo?.name,
+            email:profileInfo?.data?.email,
+            candidateUserID:profileInfo?.data?.userId,
+            status:['Applied'],
+            jobID:jobItem?._id,
+            jobAppliedDate:new Date().toLocaleDateString(),
+        }
+
+        const result = await createJobApplicationAction(data , '/jobs');
+        setShowJobDetailDrawer(false)
+    }
 
     return(
         <div>
@@ -29,7 +46,17 @@ export function CandidateJobCard({jobItem}){
                         <div className="flex justify-between">
                             <DrawerTitle className='text-4xl font-extrabold text-gray-800'>{jobItem?.jobTitle}</DrawerTitle>
                             <div className="flex gap-3">
-                                <Button className='h-11 flex items-center justify-center px-5'>Apply now</Button>
+                                <Button 
+                                 onClick={handleJobApply}
+                                 className='h-11 flex items-center justify-center px-5'
+                                 disabled={
+                                    jobApplications?.data?.findIndex(item=> item.jobID === jobItem?._id)>-1 ?true:false 
+                                 }
+                                >
+                                    {
+                                        jobApplications?.data?.findIndex(item=> item.jobID === jobItem?._id)>-1 ?"Applied":"Apply"
+                                    }
+                                </Button>
                                 <Button onClick={()=>setShowJobDetailDrawer(false)} className='h-11 flex items-center justify-center px-5'>Cancel</Button>
                             </div>
                         </div>

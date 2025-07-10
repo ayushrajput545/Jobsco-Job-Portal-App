@@ -94,11 +94,10 @@ export async function createJobApplicationAction(data, pathToRevalidate){
 }
 
 // fetch job Application for caniddate
-export async function fetchJobApplicationForCandidate(candidateID,pathToRevalidate){
+export async function fetchJobApplicationForCandidate(candidateID){
     await dbConnect();
-    revalidatePath(pathToRevalidate)
     try{
-        const allApplications = await Application.findById({candidateUserID:candidateID})
+        const allApplications = await Application.find({candidateUserID:candidateID})
         return {
             success:true,
             message:"Applications fetched successfully",
@@ -115,11 +114,10 @@ export async function fetchJobApplicationForCandidate(candidateID,pathToRevalida
 }
 
 // fetch job application for recriter
-export async function fetchJobApplicationForRecriter(recruiterID,pathToRevalidate){
+export async function fetchJobApplicationForRecriter(recruiterID){
     await dbConnect();
-    revalidatePath(pathToRevalidate)
     try{
-        const allApplications = await Application.findById({recruiterUserID:recruiterID})
+        const allApplications = await Application.find({recruiterUserID:recruiterID})
         return {
             success:true,
             message:"Applications fetched successfully",

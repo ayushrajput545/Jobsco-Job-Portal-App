@@ -39,9 +39,9 @@ export function JobListing({user , profileInfo,jobsList , jobApplications}){
                                         jobsList?.data.map((jobItem,i)=>(
                                             profileInfo?.data?.accountType==="candidate" 
                                             ? 
-                                            <CandidateJobCard key={i} jobItem={jobItem}/>
+                                            <CandidateJobCard key={i} jobApplications={jobApplications} profileInfo={profileInfo} jobItem={jobItem}/>
                                             :
-                                           <RecruiterJobsCard key={i} jobItem={jobItem}/>
+                                           <RecruiterJobsCard key={i} jobApplications={jobApplications} profileInfo={profileInfo} jobItem={jobItem}/>
                                         ))
                                         :
                                         null             

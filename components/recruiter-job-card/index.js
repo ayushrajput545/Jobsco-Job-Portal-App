@@ -2,7 +2,8 @@ import { Rocket } from "lucide-react";
 import { CommonCard } from "../common-card";
 import { Button } from "../ui/button";
 
-export function RecruiterJobsCard({jobItem}){
+export function RecruiterJobsCard({jobItem , jobApplications}){
+
     return (
         <div>
             <CommonCard
@@ -11,7 +12,9 @@ export function RecruiterJobsCard({jobItem}){
               description={jobItem?.jobDescription}
               footerContent={
                 <Button className='h-11 flex items-center justify-center px-5'>
-                    10 Applicants
+                    {
+                     jobApplications?.data?.filter(item=> item.jobID === jobItem?._id).length
+                    } Applicants
                 </Button>
               }
             />

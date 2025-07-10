@@ -55,7 +55,7 @@ export function OnBoard(){
 
     async function handleUploadPdfToSupabase(e){
         const{data,error}= await supaBaseClient.storage
-         .from("job-portal")//bucket name
+         .from("job-portal-public")//bucket name
          .upload(`/public/${file.name}` , file , {
             cacheControl:"3600",
             upsert:false,
