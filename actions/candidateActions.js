@@ -38,3 +38,24 @@ export async function createCandidateProfileAction(formData,pathToRevalidate){
         }
     }
 }
+
+// get candidate detail by candidate id 
+export async function getCandidateDetailById(id){
+  await dbConnect()
+  try{
+    const candidate = await User.findOne({userId:id}).populate('candidateProfileInfo').exec();
+    return{
+      success:true,
+      message:"Candidate detail fetched successfully",
+      data:JSON.parse(JSON.stringify(candidate))
+    }
+
+  }
+  catch(err){
+    console.log(err)
+    return {
+      success:false,
+      message:"Internal Server Error! Please try again later "
+    }
+  }
+}

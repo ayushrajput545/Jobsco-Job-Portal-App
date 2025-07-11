@@ -134,6 +134,32 @@ export async function fetchJobApplicationForRecriter(recruiterID){
 }
 
 
-// update job application
+// update job application : select or reject
+export async function updateJobApplicationAction(data , pathToRevalidate){
+    await dbConnect();
+    revalidatePath(pathToRevalidate)
+    try{
+        
+        const {status ,_id , ...otherDetails} = data;
+        const updatedApplication = await Application.findOneAndUpdate({_id:_id} , {
+            ...otherDetails,
+            status:status,
+        },{new :true});
+
+        return {
+            sucess:true,
+            message:"Application Updated Successfully",
+            data:JSON.parse(JSON.stringify(updatedApplication))
+        }
+    }
+    catch(err){
+        console.log(err)
+        return {
+            success:false,
+            message:"Internal Server Error! Please try again"
+        }
+    }
+
+}
 
 
