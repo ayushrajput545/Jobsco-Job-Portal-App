@@ -50,10 +50,14 @@ export async function fetchJobsForRecruiterAction(id){
 }
 
 //fetch all jobs for candidate that is created by all the rectuiter from mongoDB 
-export async function fetchJobsForCandidateAction(){
+export async function fetchJobsForCandidateAction(filterParams={}){
     await dbConnect();
     try{
-        const allJobs = await Jobs.find({});
+        let updatedParams={}
+        Object.keys(filterParams).forEach(filterKey=>{
+            updatedParams[filterKey]={$in: filterParams[filterKey].split(',')}
+        })
+        const allJobs = await Jobs.find(filterParams && Object.keys(filterParams).length>0 ? updatedParams:{});
         return{
             success:true,
             message:"Jobs fetched successfully",

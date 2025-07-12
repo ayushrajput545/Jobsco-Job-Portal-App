@@ -1,3 +1,4 @@
+import queryString from "query-string"
 
 export const recruiterOnBoardFormControls=[
 
@@ -140,3 +141,46 @@ export const postNewJobFormControls=[
     }
 
 ]
+
+export const filterMenuData=[
+    {
+        id:'companyName',
+        label:'Company Name'
+    },
+
+    {
+        id:'jobTitle',
+        label:'Title'
+    },
+
+    {
+        id:'jobType',
+        label:'Type'
+    },
+
+    {
+        id:'jobLocation',
+        label:'Location'
+    }
+
+]
+
+export function formUrlQuery({params,dataToAdd}){
+    let currentUrl = queryString.parse(params)
+
+    if(Object.keys(dataToAdd).length >0){
+        Object.keys(dataToAdd).map(key=>{
+            if(dataToAdd[key].length===0) delete currentUrl[key];
+            else currentUrl[key]=dataToAdd[key].join(",");
+        });
+    }
+    return queryString.stringifyUrl(
+        {
+            url:window.location.pathname,
+            query: currentUrl
+        },
+        {
+            skipNull:true
+        }
+    )
+}
