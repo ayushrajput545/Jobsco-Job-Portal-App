@@ -37,7 +37,7 @@ const candidateProfileSchema = new mongoose.Schema({
         required:true
     },
 
-    linkdin:{
+    linkedin:{
         type:String
     },
     resume:{

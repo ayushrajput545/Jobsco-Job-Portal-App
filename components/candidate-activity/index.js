@@ -17,8 +17,8 @@ export function CandidateActivity({jobList , jobApplications}){
                     <h1 className="text-4xl font-bold text-gray-950 tracking-tight">Your Activity</h1>
                     <TabsList>
                         {
-                            uniqueStatusArray.map((status)=>(
-                                <TabsTrigger value={status}>{status}</TabsTrigger>
+                            uniqueStatusArray.map((status,i)=>(
+                                <TabsTrigger key={i} value={status}>{status}</TabsTrigger>
                             ))
                         }
                    </TabsList>

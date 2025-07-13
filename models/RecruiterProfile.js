@@ -12,7 +12,7 @@ const recruiterProfileSchema = new mongoose.Schema({
         required:true
     },
 
-    roleInCompany:{
+    companyRole:{
         type:String,
         required:true
     }

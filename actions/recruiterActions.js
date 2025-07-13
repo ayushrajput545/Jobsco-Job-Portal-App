@@ -14,7 +14,7 @@ export async function createProfileAction(formData , pathToRevalidate){
         const newRecruiterProfile = await RecruiterProfile.create({
             name:name,
             companyName:companyName,
-            roleInCompany:companyRole
+            companyRole:companyRole
         })
         // 2. Create the user and reference the recruiter profile
         const newUser = await User.create({
