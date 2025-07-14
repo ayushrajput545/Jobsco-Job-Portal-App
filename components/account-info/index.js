@@ -40,7 +40,6 @@ export function AccountInfo({profileInfo}){
 
 
     // console.log("This is profile infoi",profileInfo)
-    console.log("Recuiterformdata",recruiterFormData)
     async function handleUpdateProfile(){
         
         const data= profileInfo?.accountType==='candidate' ?

@@ -3,11 +3,15 @@ import { createFilterCategoryAction } from "@/actions/otherActions";
 import { fetchProfileAction } from "@/actions/recruiterActions";
 import { JobListing } from "@/components/job-listing";
 import { currentUser } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 
 export default async function JobsPage({ searchParams }){
 
     const user = await currentUser()
     const profileInfo = await fetchProfileAction(user?.id)
+
+    if(!user) redirect('/sign-in')
+    if(user && !profileInfo?.data?._id) redirect('/on-board')
 
     const jobsList = profileInfo?.data?.accountType==="candidate"
     ? 
