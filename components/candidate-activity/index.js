@@ -5,10 +5,10 @@ import { CommonCard } from "../common-card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs"
 
 export function CandidateActivity({jobList , jobApplications}){
-    console.log(jobList , jobApplications)
+ 
 
     const uniqueStatusArray = [... new Set(jobApplications.map(item=>item?.status).flat(1))]
-    console.log("uniarra",uniqueStatusArray)
+   
 
     return (
         <div className="mx-auto w-11/12 max-w-7xl">
@@ -34,7 +34,7 @@ export function CandidateActivity({jobList , jobApplications}){
                                                 jobApplications.filter(jobApplicationItem=>jobApplicationItem.status.indexOf(status)>-1)
                                                 .findIndex(filteredItemByStatus=>jobListItem?._id ===filteredItemByStatus?.jobID)>-1
 
-                                            ).map(finalFilteredItem=><CommonCard icon={<Rocket size={40}/>} title={finalFilteredItem?.jobTitle} description={finalFilteredItem?.jobDescription} />)
+                                            ).map((finalFilteredItem,i)=><CommonCard key={i} icon={<Rocket size={40}/>} title={finalFilteredItem?.jobTitle} description={finalFilteredItem?.jobDescription} />)
                                         }
                                         
                                     </TabsContent>
