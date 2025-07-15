@@ -5,8 +5,10 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/dialog"
 import { CommonForm } from "../common-form"
 import { postNewJobFormControls } from "@/utils"
 import { postNewJobAction } from "@/actions/jobsActions"
+import { toast } from "sonner"
+import { useRouter } from "next/navigation"
 
-export function PostNewJob({profileInfo,user}){
+export function PostNewJob({profileInfo,user,jobsList}){
 
     const[showJobDialog , setShowJobDialog] = useState(false)
     const[jobFormData , setJobFormData] = useState({
@@ -18,6 +20,7 @@ export function PostNewJob({profileInfo,user}){
         jobDescription:'',
         skills:''
     })
+    const router = useRouter()
 
     function handlePostNewBtnValid(){
         return Object.keys(jobFormData).every(key => jobFormData[key].trim() !== '');
@@ -43,9 +46,35 @@ export function PostNewJob({profileInfo,user}){
         setShowJobDialog(false)
     }
 
+    function handleAddNewJob(){
+
+        // Recruiter only post job according premiuim plan he have
+        if(!profileInfo?.data?.isPremiumUser && jobsList?.data?.length >=2){
+            toast("You can post max 2 jobs" , {
+                description: "Please opt for membership to post more jobs",
+                action:{
+                    label:"Buy Membership",
+                    onClick:()=>router.push('/membership')
+                }
+            })
+            return;
+        }
+        else if(profileInfo?.data?.isPremiumUser && (profileInfo?.data?.memberShipType==='basic' && jobsList?.data?.length >=5)){
+                toast("You can post max 5 jobs" , {
+                description: "Please upgrade your plan",
+                action:{
+                    label:"Upgrade Plan",
+                    onClick:()=>router.push('/membership')
+                }
+            })
+            return;
+        }
+        setShowJobDialog(true)
+    }
+
     return (
         <div>
-            <Button onClick={()=>setShowJobDialog(true)} className='disabled:opacity-60 flex h-11 items-center justify-center mt-5'>
+            <Button onClick={handleAddNewJob} className='disabled:opacity-60 flex h-11 items-center justify-center mt-5'>
                 Post a Job
             </Button>
             <Dialog open={showJobDialog} onOpenChange={()=>{

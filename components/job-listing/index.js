@@ -101,7 +101,7 @@ export function JobListing({user , profileInfo,jobsList , jobApplications ,filte
                                 }
                             </Menubar>
                             :
-                            <PostNewJob user={user} profileInfo={profileInfo}/>
+                            <PostNewJob user={user} profileInfo={profileInfo} jobsList={jobsList}/>
                         }
                     </div>
                 </div>

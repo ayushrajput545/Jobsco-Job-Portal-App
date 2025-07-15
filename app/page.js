@@ -32,7 +32,7 @@ export default async function Home() {
 
                  <HomePageButtonControls  user={JSON.parse(JSON.stringify(user))} profileInfo={profileInfo}/>
                 </div>
-                <div className='hidden relative  md:block lg:w-7/12'>
+                <div className=' relative  lg:w-7/12'>
                   <img  src="https://utfs.io/f/4c9f7186-8ad0-4680-aece-a5abea608705-k6t10e.png" alt='Job Portal' className='relative ml-auto'/>
                 </div>
 

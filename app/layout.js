@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import Loading from "./loading";
 import CommonLayout from "@/components/common-layout";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,6 +30,7 @@ export default function RootLayout({ children }) {
         >
           <Suspense fallback={<Loading/>}>
             <CommonLayout children={children}/>
+            <Toaster/>
           </Suspense>
         </body>
     </html>
