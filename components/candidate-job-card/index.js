@@ -6,12 +6,34 @@ import { Button } from "../ui/button"
 import { Drawer, DrawerContent, DrawerDescription, DrawerHeader, DrawerTitle } from "../ui/drawer"
 import { useState } from "react"
 import { createJobApplicationAction } from "@/actions/jobsActions"
+import { toast } from "sonner"
 
 export function CandidateJobCard({jobItem ,profileInfo,jobApplications}){
 
     const[showJobDetailDrawer , setShowJobDetailDrawer] = useState(false);
 
     async function handleJobApply(){
+
+        if(!profileInfo?.data?.isPremiumUser && jobApplications?.data?.length >=2){
+            toast("You can apply max 2 jobs" , {
+                description: "Please opt for membership to apply more jobs",
+                action:{
+                    label:"Buy Membership",
+                    onClick:()=>router.push('/membership')
+                }
+            })
+            return;
+        }
+        else if(profileInfo?.data?.isPremiumUser && (profileInfo?.data?.memberShipType==='basic' && jobApplications?.data?.length >=5)){
+                toast("You can apply in max 5 jobs" , {
+                description: "Please upgrade your plan",
+                action:{
+                    label:"Upgrade Plan",
+                    onClick:()=>router.push('/membership')
+                }
+            })
+            return;
+        }
 
         const data={
             recruiterUserID:jobItem?.recruiterId,
