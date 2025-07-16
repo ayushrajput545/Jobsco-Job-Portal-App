@@ -6,10 +6,14 @@ import { Sheet, SheetContent, SheetTrigger ,   SheetHeader,
   SheetTitle, } from "../ui/sheet"
 import Link from "next/link"
 import { UserButton } from "@clerk/nextjs"
+import { usePathname } from "next/navigation"
 
  
 
 export default function Header({user , profileInfo}){
+
+    const pathname = usePathname()
+    // console.log("pathname", pathname)
 
     const menuItems =[
         {
@@ -71,7 +75,7 @@ export default function Header({user , profileInfo}){
                             {
                                 menuItems.map((item , i)=>(
                                     item.show ? 
-                                    <Link onClick={()=>sessionStorage.removeItem("filterParams")} key={i} href={item.path} className="flex w-full items-center py-2 text-lg font-semibold">
+                                    <Link onClick={()=>sessionStorage.removeItem("filterParams")} key={i} href={item.path} className={`flex w-full items-center py-2 text-lg font-semibold transition-all duration-300 rounded-lg p-2 ${pathname===item.path?'bg-gray-200':'bg-white'}`}>
                                       {item.label}
                                     </Link>
                                     :
@@ -91,7 +95,12 @@ export default function Header({user , profileInfo}){
                     {
                         menuItems.map((item,i)=>(
                             item.show ? 
-                            <Link onClick={()=>sessionStorage.removeItem("filterParams")} className="group inline-flex h-9 w-max items-center rounded-md bg-white px-4 py-2 text-sm font-md font-semibold" key={i} href={item.path}>{item.label}</Link>
+                            <Link 
+                              onClick={()=>sessionStorage.removeItem("filterParams")} 
+                              className={`group inline-flex h-9 w-max items-center rounded-md ${pathname===item.path ? 'bg-gray-300':'bg-white'}
+                               hover:bg-gray-100  px-4 py-2 text-sm font-md font-semibold transition-all duration-300`} key={i} href={item.path}>
+                              {item.label}
+                            </Link>
                             :
                             null
                         ))
