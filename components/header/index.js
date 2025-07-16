@@ -29,7 +29,7 @@ export default function Header({user , profileInfo}){
         },
         {
             label:'Register',
-            path:'sign-up',
+            path:'/sign-up',
             show:!user ? true : false
         },
 

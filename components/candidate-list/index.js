@@ -5,6 +5,7 @@ import { Button } from "../ui/button"
 import { Dialog, DialogContent, DialogFooter, DialogTitle } from "../ui/dialog"
 import { createClient } from "@supabase/supabase-js"
 import { updateJobApplicationAction } from "@/actions/jobsActions"
+import { toast } from "sonner"
 
 export function CandidateList({
     currentCandidateDetals,
@@ -46,6 +47,7 @@ export function CandidateList({
     }
 
     async function handleUpdateJobStatus(getCurrentStatus){
+        const toastid = toast.loading("Loading...")
         let cpyJobApplicants = [...jobApplications]
         const indexOfCurrentJobApplicant = cpyJobApplicants.findIndex(item=>item.candidateUserID===currentCandidateDetals?.userId)
          
@@ -55,7 +57,9 @@ export function CandidateList({
         }
 
         const response = await updateJobApplicationAction(data, '/jobs')
-        console.log(response) 
+        toast.success(response?.message, {
+            id:toastid
+        })
         // const response = await updateJobApplicationAction()
     }
 
@@ -104,7 +108,7 @@ export function CandidateList({
                     </div>
                     
                     <div>
-                        <p><span className="font-semibold">Total Experience in months: </span>{currentCandidateDetals?.candidateProfileInfo?.totalExperience}</p>
+                        <p><span className="font-semibold">Total Experience: </span>{currentCandidateDetals?.candidateProfileInfo?.totalExperience}</p>
                     </div>
                     <div className="flex flex-wrap gap-4 mt-6 mb-5">
                         {

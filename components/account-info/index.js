@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { CommonForm } from "../common-form"
 import { candidateOnBoardFormControls, recruiterOnBoardFormControls } from "@/utils"
 import { updateCandidateProfileAction, updateRecruitarProfileAction } from "@/actions/otherActions"
+import { toast } from "sonner"
 export function AccountInfo({profileInfo}){
 
     const [ candidateFormData , setCandiDateFormData] = useState({
@@ -52,11 +53,16 @@ export function AccountInfo({profileInfo}){
                 ...recruiterFormData,
                 _id:profileInfo?.recruiterProfileInfo?._id
             }
-        const response = profileInfo?.accountType==='candidate' ?
-          await updateCandidateProfileAction(data, '/account')
-          :
-          await updateRecruitarProfileAction(data,'/account')
-        console.log(response)
+            await toast.promise(
+                profileInfo?.accountType === 'candidate'
+                ? updateCandidateProfileAction(data, '/account')
+                : updateRecruitarProfileAction(data, '/account'),
+                {
+                loading: 'Updating profile...',
+                success: 'Profile updated successfully!',
+                error: 'Failed to update profile.',
+                }
+            );
     }
 
   

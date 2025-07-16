@@ -7,10 +7,12 @@ import { Drawer, DrawerContent, DrawerDescription, DrawerHeader, DrawerTitle } f
 import { useState } from "react"
 import { createJobApplicationAction } from "@/actions/jobsActions"
 import { toast } from "sonner"
+import { useRouter } from "next/navigation"
 
 export function CandidateJobCard({jobItem ,profileInfo,jobApplications}){
 
     const[showJobDetailDrawer , setShowJobDetailDrawer] = useState(false);
+    const router = useRouter()
 
     async function handleJobApply(){
 
@@ -35,6 +37,7 @@ export function CandidateJobCard({jobItem ,profileInfo,jobApplications}){
             return;
         }
 
+        const toastid = toast.loading("Loading...")
         const data={
             recruiterUserID:jobItem?.recruiterId,
             name:profileInfo?.data?.candidateProfileInfo?.name,
@@ -46,6 +49,20 @@ export function CandidateJobCard({jobItem ,profileInfo,jobApplications}){
         }
 
         const result = await createJobApplicationAction(data , '/jobs');
+        if(result?.success){
+            toast.success("Applied Sucessfully!",{
+            id:toastid,
+            action:{
+                label:"Check Here",
+                onClick:()=>router.push('/activity')
+            }
+        })
+        }
+        else{
+            toast.error(result?.message,{
+            id:toastid
+        })
+        }
         setShowJobDetailDrawer(false)
     }
 
@@ -89,10 +106,10 @@ export function CandidateJobCard({jobItem ,profileInfo,jobApplications}){
                     </DrawerDescription>
 
                     <div className="flex items-center h-[40px]">
-                        <h2 className="text-xl font-bold text-gray-500 ">{jobItem?.jobType} Time </h2>
+                        <h2 className="text-xl font-bold text-gray-500 ">{jobItem?.jobType}</h2>
                     </div>
 
-                    <h3 className="text-2xl font-medium text-black mt-3">Experience: {jobItem?.jobExperience} months</h3>
+                    <h3 className="text-2xl font-medium text-black mt-3">Experience: {jobItem?.jobExperience}</h3>
 
                     <div className="flex gap-4 mt-6 ">
                         {

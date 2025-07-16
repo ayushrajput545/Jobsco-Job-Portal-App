@@ -8,6 +8,7 @@ import { createPriceIdAction, createStripePaymentAction, updateUserProfile } fro
 import { loadStripe } from "@stripe/stripe-js"
 import { useSearchParams } from "next/navigation"
 import { useEffect } from "react"
+import { toast } from "sonner"
 
 export function MemeberShip({profileInfo}){
 
@@ -15,6 +16,7 @@ export function MemeberShip({profileInfo}){
     const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PK_KEY) // npm i @stripe/stripe-js
 
     async function handlePayment(currentPlan){
+        const toastid = toast.loading("Loading...")
         const stripe = await stripePromise
         const extractPriceID = await createPriceIdAction({
             amount:Number(currentPlan?.price)
@@ -30,6 +32,11 @@ export function MemeberShip({profileInfo}){
                     }
                 ]
             });
+
+            toast.success("Redirected to stripe",{  
+                id:toastid
+            })
+        
 
             await stripe.redirectToCheckout({
                 sessionId:payment?.id

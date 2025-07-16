@@ -32,8 +32,12 @@ export function PostNewJob({profileInfo,user,jobsList}){
             recruiterId:user?.id,
             applicant:[] //initaalyy no one apply for this job
         }
+        const toastid = toast.loading("Posting new Job")
         const response = await postNewJobAction(data , '/jobs')
       // console.log("resposne",response)
+        toast.success("Job Posted Sucessfully", {
+            id:toastid
+        })
         setJobFormData({  // set it empty once diloge is closed
             companyName:profileInfo?.data?.recruiterProfileInfo?.companyName,
             jobTitle:'',

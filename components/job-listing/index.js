@@ -122,7 +122,17 @@ export function JobListing({user , profileInfo,jobsList , jobApplications ,filte
                                            <RecruiterJobsCard key={i} jobApplications={jobApplications} profileInfo={profileInfo} jobItem={jobItem}/>
                                         ))
                                         :
-                                        null             
+                                        <div className="">
+                                            <p>
+                                                {
+                                                    profileInfo?.data?.accountType==="candidate" 
+                                                    ?
+                                                    "No Job Available for now"
+                                                    :
+                                                    " You have not post any job yet.Please post a new job"
+                                                }
+                                            </p>
+                                        </div>             
                                     
                                     }
 

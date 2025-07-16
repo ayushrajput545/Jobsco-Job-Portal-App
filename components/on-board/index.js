@@ -13,6 +13,7 @@ import { useUser } from '@clerk/nextjs'
 import { createProfileAction } from '@/actions/recruiterActions'
 import { createClient } from '@supabase/supabase-js'
 import { createCandidateProfileAction } from '@/actions/candidateActions'
+import { toast } from 'sonner'
 
 export function OnBoard(){
 
@@ -54,20 +55,31 @@ export function OnBoard(){
     },[file])
 
     async function handleUploadPdfToSupabase(e){
+        const toastid = toast.loading("Uploading...")
         const{data,error}= await supaBaseClient.storage
          .from("job-portal-public")//bucket name
          .upload(`/public/${file.name}` , file , {
             cacheControl:"3600",
             upsert:false,
          })  // on which path file upload in storage
-         console.log(data,error)
 
          if(data){
             setCandiDateFormData({
                 ...candidateFormData,
                 resume:data.path // this path store in mongoDB database
             })
+            toast.success("Uploaded",{
+                id:toastid
+            })
          }
+         else{
+            toast.error(error.message  ,{
+                id:toastid,
+                description:"Please choose another pdf"
+            })
+         }
+         console.log(data)
+         console.log(error)
     }
 
 
@@ -91,6 +103,7 @@ export function OnBoard(){
     }
 
     async function handleCreateProfileAction(){
+        const toastid = toast.loading("Loading...")
         const data = currentTab==='candidate' ? {
             userId:user?.id,
             email:user?.primaryEmailAddress?.emailAddress,
@@ -109,11 +122,15 @@ export function OnBoard(){
         //call action
         if(currentTab==='candidate'){
             const result = await createCandidateProfileAction(data,'/on-board')
-            console.log(result)
+            toast.success("Welcome!" ,{
+                id:toastid
+            })
         }
         else{
             const result = await createProfileAction(data, "/on-board")
-            console.log(result)
+            toast.success("Welcome!",{
+                id:toastid
+            })
         }
          
          

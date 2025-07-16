@@ -18,7 +18,7 @@ export const recruiterOnBoardFormControls=[
     {
         label:'Company Role',
         name:'companyRole',
-        placeholder:'Enter your role in company...',
+        placeholder:'Enter your role (ex: HR Specialist , Software engineer)...',
         componentType:'input'
     },
 ]
@@ -39,40 +39,40 @@ export const candidateOnBoardFormControls=[
     {
         label:'Current Company',
         name:'currentCompany',
-        placeholder:'Enter your current company or type NA',
+        placeholder:'Enter your current company (if not type NA)',
         componentType:'input'
     },
 
     {
         label:'Current Job Location',
         name:'currentJobLocation',
-        placeholder:'Enter your current job location or type NA',
+        placeholder:'Enter your current job location (if not type NA)',
         componentType:'input'
     },
 
     {
         label:'Current Salary',
         name:'currentSalary',
-        placeholder:'Enter your current salary or type NA',
+        placeholder:'Enter your current salary (if not type NA)',
         componentType:'input'
     },
 
     {
         label:'Notice Period',
         name:'noticePeriod',
-        placeholder:'Enter your notice period or type NA',
+        placeholder:'Enter your notice period (if not type NA)',
         componentType:'input'
     },
     {
         label:'Skills',
         name:'skills',
-        placeholder:'Enter your Skills',
+        placeholder:'Enter your Skills (React.js , MongoDB, Node.js)',
         componentType:'input'
     },
     {
         label:'Total Experience',
         name:'totalExperience',
-        placeholder:'Enter your total experience in months',
+        placeholder:'Enter your total experience (ex: 2 months , 1 yr)',
         componentType:'input'
     },
 
@@ -102,27 +102,27 @@ export const postNewJobFormControls=[
     {
         label:"Title",
         name:'jobTitle',
-        placeholder:'Enter job title...',
+        placeholder:'Enter job title (ex: web Developer, SDE etc)',
         componentType:"input"
     },
 
     {
         label:"Type",
         name:'jobType',
-        placeholder:'Enter job type',
+        placeholder:'Enter job type (Part time , Internship)',
         componentType:"input"
     },
     {
         label:"Location",
         name:'jobLocation',
-        placeholder:'Enter Job Location',
+        placeholder:'Enter Job Location...',
         componentType:"input"
     },
 
     {
         label:"Experience",
         name:'jobExperience',
-        placeholder:'Enter job experience',
+        placeholder:'Enter job experience (ex: 2 months , 1 yr)',
         componentType:"input"
     },
 
@@ -136,7 +136,7 @@ export const postNewJobFormControls=[
     {
         label:"Skills",
         name:'skills',
-        placeholder:'Enter skills required',
+        placeholder:'Enter skills required (React.js , MongoDB, Node.js)',
         componentType:"input"
     }
 
