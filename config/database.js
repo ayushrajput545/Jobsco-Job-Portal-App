@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 export default async function dbConnect(){
 
-    mongoose.connect(process.env.DB_URL)
+    await mongoose.connect(process.env.DB_URL)
     .then(()=>console.log("DB CONNECTION SUCCESSFUL"))
     .catch((err)=>{
         console.log(err)

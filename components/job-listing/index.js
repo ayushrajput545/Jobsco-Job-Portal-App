@@ -66,7 +66,7 @@ export function JobListing({user , profileInfo,jobsList , jobApplications ,filte
     return (
         <div>
             <div className="mx-auto w-11/12">
-                <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
+                <div className="flex flex-col md:flex-row gap-5 items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
                     <h1 className="text-4xl font-bold tracking-tight text-gray-900">
                         {
                             profileInfo?.data?.accountType === "candidate" 

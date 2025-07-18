@@ -13,7 +13,7 @@ export function CandidateActivity({jobList , jobApplications}){
     return (
         <div className="mx-auto w-11/12 max-w-7xl">
             <Tabs defaultValue="Applied" className="w-full">
-                <div className="flex items-baseline justify-between border-b pb-6 pt-24">
+                <div className="flex flex-col md:flex-row gap-5 items-baseline justify-between border-b pb-6 pt-24">
                     <h1 className="text-4xl font-bold text-gray-950 tracking-tight">Your Activity</h1>
                     <TabsList>
                         {

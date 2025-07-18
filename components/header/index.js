@@ -7,12 +7,14 @@ import { Sheet, SheetContent, SheetTrigger ,   SheetHeader,
 import Link from "next/link"
 import { UserButton } from "@clerk/nextjs"
 import { usePathname } from "next/navigation"
+import { useState } from "react"
 
  
 
 export default function Header({user , profileInfo}){
 
     const pathname = usePathname()
+    const [open, setOpen] = useState(false);
     // console.log("pathname", pathname)
 
     const menuItems =[
@@ -59,7 +61,7 @@ export default function Header({user , profileInfo}){
         <div>
             <header className="flex h-16 w-11/12 mx-auto shrink-0 items-center">
               {/* This sheet handle mobile version */}
-                <Sheet>
+                <Sheet open={open} onOpenChange={setOpen}>
                     <SheetTrigger asChild>
                         <Button className='lg:hidden'>
                             <AlignJustify className="h-6 w-6"/>
@@ -75,7 +77,11 @@ export default function Header({user , profileInfo}){
                             {
                                 menuItems.map((item , i)=>(
                                     item.show ? 
-                                    <Link onClick={()=>sessionStorage.removeItem("filterParams")} key={i} href={item.path} className={`flex w-full items-center py-2 text-lg font-semibold transition-all duration-300 rounded-lg p-2 ${pathname===item.path?'bg-gray-200':'bg-white'}`}>
+                                    <Link onClick={()=>{
+                                        setOpen(false)
+                                        sessionStorage.removeItem("filterParams")
+                                        }
+                                        } key={i} href={item.path} className={`flex w-full items-center py-2 text-lg font-semibold transition-all duration-300 rounded-lg p-2 ${pathname===item.path?'bg-gray-200':'bg-white'}`}>
                                       {item.label}
                                     </Link>
                                     :
