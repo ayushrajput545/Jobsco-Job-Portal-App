@@ -29,7 +29,9 @@ export default function RootLayout({ children }) {
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
           <Suspense fallback={<Loading/>}>
-            <CommonLayout children={children}/>
+            <CommonLayout>
+              {children}  {/*This is will destructure as a prop in my CommonLAyout component */}
+            </CommonLayout>
             <Toaster/>
           </Suspense>
         </body>
