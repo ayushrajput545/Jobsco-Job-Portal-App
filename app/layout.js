@@ -5,6 +5,8 @@ import Loading from "./loading";
 import CommonLayout from "@/components/common-layout";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "@/components/ui/sonner";
+import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,6 +33,8 @@ export default function RootLayout({ children }) {
           <Suspense fallback={<Loading/>}>
             <CommonLayout>
               {children}  {/*This is will destructure as a prop in my CommonLAyout component */}
+              <SpeedInsights />
+              <Analytics />
             </CommonLayout>
             <Toaster/>
           </Suspense>
