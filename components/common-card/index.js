@@ -15,7 +15,7 @@ export function CommonCard({icon,title,description,footerContent}){
             transitionSpeed={1500}
             // scale={1.2}
             tiltEnable={pathname==='/activity' ? false :true} 
-            gyroscope={true}// tile also in mobile phones
+            // gyroscope={true}// tile also in mobile phones
         >
             <Card className='flex bg-gray-100 flex-col gap-6 p-8 transition-all duration-300 hover:bg-white hover:shadow-2xl hover:shadow-gray-600/10 cursor-pointer'>
                 <CardHeader className='p-0'>

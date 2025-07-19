@@ -138,7 +138,7 @@ export function OnBoard(){
 
 
     return(
-        <div className="w-11/12 mx-auto"> 
+        <div className="w-11/12 mx-auto pb-20"> 
             <Tabs value={currentTab} onValueChange={handleTabChange}>
                 <div className="w-full">
                     <div className="flex items-baseline justify-between border-b pb-6 pt-24">

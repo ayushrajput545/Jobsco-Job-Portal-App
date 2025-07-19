@@ -88,15 +88,21 @@ export default function Header({user , profileInfo}){
                                     null
                                 ))
                             }
-                            <UserButton afterSignOutUrl="/"/>
                         </div>
+                         
                     </SheetContent>
                 </Sheet>
 
                 {/* Create for desktop verisons*/}
-                <Link href={'/'}>
-                    <h3 className="p-6 text-5xl font-bold">JOBSCO</h3>
-                </Link>
+                <div className="flex w-full justify-between items-center">
+                    <Link href={'/'}>
+                      <h3 className="p-6 text-5xl font-bold">JOBSCO</h3>
+                    </Link>
+                    <span className="lg:hidden block">
+                        <UserButton afterSignOutUrl="/" />
+                    </span> 
+                </div>
+ 
                 <nav className="ml-auto hidden lg:flex gap-6">
                     {
                         menuItems.map((item,i)=>(
@@ -111,11 +117,10 @@ export default function Header({user , profileInfo}){
                             null
                         ))
                     }
-                    <UserButton afterSignOutUrl="/"/>
+
+                     <UserButton afterSignOutUrl="/"/>
                 </nav>
-
-
-
+                 
             </header>
         </div>
     )
