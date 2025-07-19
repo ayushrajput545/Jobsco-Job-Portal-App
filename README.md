@@ -50,6 +50,9 @@
 ### 👁️ Live View Count
 - Integrated **live view count** feature to show page impressions in real-time.
 
+### 🔍 SEO Optimized
+- SEO best practices applied using **Next.js metadata API** for better visibility and ranking.
+
 ### 🔧 Server Features
 - **Server Actions (Next.js App Router)**
   - Handle form submissions securely.
@@ -57,6 +60,8 @@
 - **Email Notifications**
   - Sends email to admin on bug report submission.
     
+---
+
 ## 🛠️ Tech Stack
 
 | Tech       | Purpose                                      |
@@ -68,6 +73,18 @@
 | **Supabase**| Cloud storage for resumes                   |
 | **Stripe** | Secure payment & membership subscription     |
 | **Vercel** | Hosting and deployment                       |
+
+---
+
+## 📸 Screenshots
+
+<div align="center">
+  
+<img src="https://github.com/ayushrajput545/Jobsco-Job-Portal-App/blob/main/Screenshot%202025-07-19%20145309.png" width="30%" alt="Homepage Screenshot" />
+<img src="https://github.com/ayushrajput545/Jobsco-Job-Portal-App/blob/main/Screenshot%202025-07-19%20141329.png" width="30%" alt="Candidate Dashboard" />
+<img src="https://github.com/ayushrajput545/Jobsco-Job-Portal-App/blob/main/Screenshot%202025-07-19%20141858.png" width="30%" alt="Recruiter Dashboard" />
+
+</div>
 
 ---
 
