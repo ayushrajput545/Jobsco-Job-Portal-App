@@ -8,7 +8,7 @@ export default async function CommonLayout({children}){ // this children came fr
 
     const user = await currentUser()
     const profileInfo = await fetchProfileAction(user?.id);
-    const project = await fetch('http://localhost:3000/api/get-count', {
+    const project = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get-count`, {
     method:"GET",
     cache:'no-store'
   })
