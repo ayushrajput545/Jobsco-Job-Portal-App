@@ -2,6 +2,7 @@ import { currentUser } from "@clerk/nextjs/server";
 import Header from "../header";
 import { fetchProfileAction } from "@/actions/recruiterActions";
 import Views from "../views";
+import ReportBug from "../ReportBug";
 
 export default async function CommonLayout({children}){ // this children came from layout.js
 
@@ -26,6 +27,7 @@ export default async function CommonLayout({children}){ // this children came fr
 
             {/* Views count */}
             <Views id={projectId} viewCount={viewCount}/>
+            <ReportBug/>
         </div>
     )
 }

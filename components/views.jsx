@@ -26,7 +26,7 @@ const Views = ({ id ,viewCount }) => {
   }, [id ,pathname]);
 
   return (
-    <div className="absolute right-5 bottom-9 mt-6 flex justify-center">
+    <div className="fixed right-5 bottom-9 mt-6 flex justify-center">
       <Button className="gap-2 bg-slate-900 text-white hover:bg-slate-800">
         <Eye className="size-5" />
          {viewCount ?? 0} Views
