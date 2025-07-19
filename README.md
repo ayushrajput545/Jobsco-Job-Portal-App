@@ -80,11 +80,11 @@
 
 <div align="center">
 
-  <img src="/public/screenshots/homepage.png" width="100%" height="auto" style="max-height: 500px; object-fit: cover; margin-bottom: 20px;" alt="Homepage Screenshot" />
+  <img src="https://github.com/ayushrajput545/Jobsco-Job-Portal-App/blob/main/Screenshot%202025-07-19%20145309.png" width="100%" height="auto" style="max-height: 500px; object-fit: cover; margin-bottom: 20px;" alt="Homepage Screenshot" />
 
   <div style="display: flex; justify-content: center; gap: 2%;">
-    <img src="/public/screenshots/candidate-dashboard.png" width="49%" height="auto" style="max-height: 500px; object-fit: cover;" alt="Candidate Dashboard" />
-    <img src="/public/screenshots/recruiter-dashboard.png" width="49%" height="auto" style="max-height: 500px; object-fit: cover;" alt="Recruiter Dashboard" />
+    <img src="https://github.com/ayushrajput545/Jobsco-Job-Portal-App/blob/main/Screenshot%202025-07-19%20141329.png" width="49%" height="auto" style="max-height: 500px; object-fit: cover;" alt="Candidate Dashboard" />
+    <img src="https://github.com/ayushrajput545/Jobsco-Job-Portal-App/blob/main/Screenshot%202025-07-19%20141858.png" width="49%" height="auto" style="max-height: 500px; object-fit: cover;" alt="Recruiter Dashboard" />
   </div>
 
 </div>
